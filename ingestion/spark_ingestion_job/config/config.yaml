@@ -1,0 +1,26 @@
+opensky:
+  username: ${OPENSKY_USERNAME}
+  password: ${OPENSKY_PASSWORD}
+  polling_interval_seconds: 10
+
+paths:
+  base: "/mnt/datalake"
+  bronze: "/mnt/datalake/bronze/opensky"
+  silver: "/mnt/datalake/silver/opensky"
+  gold: "/mnt/datalake/gold/opensky"
+
+  checkpoint_base: "/mnt/datalake/_checkpoints"
+  bronze_checkpoint: "/mnt/datalake/_checkpoints/bronze/opensky"
+  silver_checkpoint: "/mnt/datalake/_checkpoints/silver/opensky"
+  gold_checkpoint: "/mnt/datalake/_checkpoints/gold/opensky"
+
+streaming:
+  trigger_interval: "30 seconds"
+  checkpoint_retention_days: 7
+
+delta:
+  mode: "append"
+  merge_schema: false
+
+logging:
+  level: "INFO"

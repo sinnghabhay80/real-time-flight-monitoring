@@ -6,3 +6,4 @@ tenacity
 logging
 typing
 pathlib
+python-dotenv
