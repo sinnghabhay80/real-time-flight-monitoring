@@ -179,4 +179,4 @@ cython_debug/
 
 #Config Folder
 architecture.txt
-ingestion/spark_ingestion_job/config/api_keys.yaml
+ingestion/spark_ingestion_job/config/config.yaml
