@@ -12,7 +12,7 @@ logger = logging.getLogger("DeltaWriter")
 
 
 class DeltaWriter:
-    def __init__(self, spark: SparkSession, config_path: str = "config/config.yaml"):
+    def __init__(self, spark: SparkSession, config_path: str = "./config/config.yaml"):
         self.spark = spark
         self.config = load_config(config_path)
         self.default_mode = self.config["delta"].get("mode", "append")
