@@ -1,8 +1,8 @@
 import requests
 import logging
 from typing import List, Dict, Optional
-from ingestion.spark_ingestion_job.utils.config_loader import load_config
 from tenacity import retry, wait_fixed, stop_after_attempt, retry_if_exception_type
+from ingestion.spark_ingestion_job.utils.config_loader import load_config
 
 # Logging setup
 logging.basicConfig(
