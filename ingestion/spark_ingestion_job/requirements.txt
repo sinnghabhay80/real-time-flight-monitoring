@@ -1,0 +1,8 @@
+pyspark==3.5.0
+requests
+pyyaml
+delta-spark
+tenacity
+logging
+typing
+pathlib

@@ -176,3 +176,7 @@ cython_debug/
 #Idea file
 .idea
 .venv
+
+#Config Folder
+architecture.txt
+ingestion/spark_ingestion_job/config/api_keys.yaml
