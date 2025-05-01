@@ -4,16 +4,15 @@ opensky:
   polling_interval_seconds: 10
 
 paths:
-  local: ${LOCAL_STORAGE}
-  base: "/mnt/datalake"
-  bronze: "file:///${LOCAL_STORAGE}/datalake/bronze/opensky"
-  silver: "/mnt/datalake/silver/opensky"
-  gold: "/mnt/datalake/gold/opensky"
+  base: "${LOCAL_PATH}/datalake"
+  bronze: "${LOCAL_PATH}/datalake/bronze/opensky"
+  silver: "${LOCAL_PATH}/datalake/silver/opensky"
+  gold: "${LOCAL_PATH}/datalake/gold/opensky"
 
-  checkpoint_base: "/mnt/datalake/_checkpoints"
-  bronze_checkpoint: "/mnt/datalake/_checkpoints/bronze/opensky"
-  silver_checkpoint: "/mnt/datalake/_checkpoints/silver/opensky"
-  gold_checkpoint: "/mnt/datalake/_checkpoints/gold/opensky"
+  checkpoint_base: "${LOCAL_PATH}/datalake/_checkpoints"
+  bronze_checkpoint: "${LOCAL_PATH}/datalake/_checkpoints/bronze/opensky"
+  silver_checkpoint: "${LOCAL_PATH}/datalake/_checkpoints/silver/opensky"
+  gold_checkpoint: "${LOCAL_PATH}/datalake/_checkpoints/gold/opensky"
 
 streaming:
   trigger_interval: "30 seconds"
