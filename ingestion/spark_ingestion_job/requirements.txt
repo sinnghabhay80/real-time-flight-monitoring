@@ -3,7 +3,6 @@ requests
 pyyaml
 delta-spark
 tenacity
-logging
 typing
 pathlib
 python-dotenv

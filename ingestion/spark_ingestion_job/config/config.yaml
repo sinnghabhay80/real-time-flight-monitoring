@@ -4,8 +4,9 @@ opensky:
   polling_interval_seconds: 10
 
 paths:
+  local: ${LOCAL_STORAGE}
   base: "/mnt/datalake"
-  bronze: "/mnt/datalake/bronze/opensky"
+  bronze: "file:///${LOCAL_STORAGE}/datalake/bronze/opensky"
   silver: "/mnt/datalake/silver/opensky"
   gold: "/mnt/datalake/gold/opensky"
 

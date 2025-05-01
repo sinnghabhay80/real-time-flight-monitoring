@@ -13,7 +13,7 @@ logger = logging.getLogger("OpenSkyAPIClient")
 
 
 class OpenSkyAPIClient:
-    def __init__(self, config_path: str = "../config/config.yaml"):
+    def __init__(self, config_path: str = "./config/config.yaml"):
         """
         Initializes the OpenSky API client with credentials from YAML config.
         """
@@ -32,7 +32,7 @@ class OpenSkyAPIClient:
         try:
             response = requests.get(
                 self.base_url,
-                auth=(self.username, self.password) if self.username and self.password else None,
+                # auth=(self.username, self.password) if self.username and self.password else None,
                 timeout=10
             )
             if response.status_code == 200:
