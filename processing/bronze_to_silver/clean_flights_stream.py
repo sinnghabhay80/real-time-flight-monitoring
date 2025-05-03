@@ -2,8 +2,6 @@ import logging
 from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql.functions import col, when, current_timestamp
 from ingestion.spark_ingestion_job.utils.config_loader import load_config
-from ingestion.spark_ingestion_job.utils.delta_writer import DeltaWriter
-from ingestion.spark_ingestion_job.utils.schema_loader import load_schema_from_ddl
 
 # Logging setup
 logging.basicConfig(
@@ -50,12 +48,8 @@ def main():
     spark = create_spark_session()
 
     bronze_delta_path = config["paths"]["bronze"]
-    bronze_schema_path = config["paths"]["bronze_schema"]
-    bronze_schema = load_schema_from_ddl(bronze_schema_path, spark)
 
     silver_delta_path = config["paths"]["silver"]
-    silver_schema_path = config["paths"]["silver_schema"]
-    silver_schema = load_schema_from_ddl(silver_schema_path, spark)
 
     logger.info("Reading Bronze table as streaming source...")
     bronze_df = spark\
