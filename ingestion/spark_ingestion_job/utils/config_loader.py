@@ -29,7 +29,7 @@ def _expand_env_in_dict(config_dict):
     return config_dict
 
 
-def load_config(config_path: str = "config/config.yaml") -> Dict:
+def load_config(config_path: str = "/home/abhays/real-time-flight-monitoring/ingestion/spark_ingestion_job/config/config.yaml") -> Dict:
     """
         Loads YAML configuration from the given path.
     """
