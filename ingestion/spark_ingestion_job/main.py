@@ -1,7 +1,5 @@
 import time
 import logging
-import os
-import traceback
 from pyspark.sql import SparkSession, Row
 from ingestion.spark_ingestion_job.utils.config_loader import load_config
 from ingestion.spark_ingestion_job.utils.opensky_api_reader import OpenSkyAPIClient
@@ -15,8 +13,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger("MainApp")
 
-os.environ["HADOOP_HOME"] = "C:/hadoop"
-os.environ["HADOOP_BIN_PATH"] = "C:/hadoop/bin"
 
 def create_spark_session(app_name: str = "RealTimeAircraftIngest") -> SparkSession:
     return (
@@ -35,10 +31,10 @@ def main():
     client = OpenSkyAPIClient()
     writer = DeltaWriter(spark)
 
-    bronze_path = config["paths"]["bronze"]
-    bronze_schema = load_schema_from_ddl("./schemas/bronze.ddl", spark)
+    bronze_delta_path = config["paths"]["bronze"]
+    bronze_schema_path = config["paths"]["bronze_schema"]
+    bronze_schema = load_schema_from_ddl(bronze_schema_path, spark)
     polling_interval = config["opensky"]["polling_interval_seconds"]
-    max_retries = 0#config["opensky"].get("max_retries", 5)
 
     while True:
         try:
@@ -48,9 +44,7 @@ def main():
 
             if states:
                 df = spark.createDataFrame(data=normalize_states, schema=bronze_schema)
-                df.show(20)
-                df.printSchema()
-                writer.write_to_delta(df=df, path=bronze_path)
+                writer.write_to_delta(df=df, path=bronze_delta_path)
                 logger.info(f"Written {df.count()} records to Delta.")
             else:
                 logger.warning("No data received from OpenSky API.")
