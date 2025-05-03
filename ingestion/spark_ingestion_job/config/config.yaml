@@ -14,6 +14,10 @@ paths:
   silver_checkpoint: "${LOCAL_PATH}/datalake/_checkpoints/silver/opensky"
   gold_checkpoint: "${LOCAL_PATH}/datalake/_checkpoints/gold/opensky"
 
+  bronze_schema: "${LOCAL_PATH}/ingestion/spark_ingestion_job/schemas/bronze.ddl"
+  silver_schema: "${LOCAL_PATH}/ingestion/spark_ingestion_job/schemas/silver.ddl"
+  gold_schema: "${LOCAL_PATH}/ingestion/spark_ingestion_job/schemas/gold.ddl"
+
 streaming:
   trigger_interval: "30 seconds"
   checkpoint_retention_days: 7
