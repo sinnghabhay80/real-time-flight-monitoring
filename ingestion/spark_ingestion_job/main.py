@@ -11,7 +11,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s"
 )
-logger = logging.getLogger("MainApp")
+logger = logging.getLogger("BronzeIngestionLayer")
 
 
 def create_spark_session(app_name: str = "RealTimeAircraftIngest") -> SparkSession:
