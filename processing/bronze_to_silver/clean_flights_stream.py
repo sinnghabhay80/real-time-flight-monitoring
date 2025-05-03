@@ -1,6 +1,6 @@
 import logging
 from pyspark.sql import SparkSession, DataFrame
-from pyspark.sql.functions import col, when, current_timestamp
+from pyspark.sql.functions import col, current_timestamp
 from ingestion.spark_ingestion_job.utils.config_loader import load_config
 
 # Logging setup
@@ -35,7 +35,7 @@ def clean_data(df: DataFrame) -> DataFrame:
     cleaned_df = df\
                  .dropna(subset=["icao24", "time_position", "latitude", "longitude"])\
                  .filter((col("latitude").between(-180.0, 180.0)) & (col("longitude").between(-90.0, 90.0)))\
-                 .filter((col("baro_altitude").isNull()) & (col("baro_altitude") >= 0))\
+                 .filter((col("baro_altitude").isNull()) | (col("baro_altitude") >= 0))\
                  .filter((col("icao24").isNotNull()) & (col("icao24") != "") & (col("icao24").rlike("^[a-fA-F0-9]{6}$"))) \
                  .dropDuplicates(subset=["icao24", "time_position", "last_contact"])\
                  .withColumn("ingestion_timestamp", current_timestamp())
@@ -64,6 +64,7 @@ def main():
     query = silver_df\
             .writeStream\
             .format("delta")\
+            .outputMode("append")\
             .option("checkpointLocation", config["paths"]["silver_checkpoint"])\
             .start(silver_delta_path)
 
