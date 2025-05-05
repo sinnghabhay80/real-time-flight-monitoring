@@ -24,7 +24,7 @@ def clean_data(df: DataFrame) -> DataFrame:
     """
     cleaned_df = df\
                  .dropna(subset=["icao24", "time_position", "latitude", "longitude"])\
-                 .filter((col("latitude").between(-180.0, 180.0)) & (col("longitude").between(-90.0, 90.0)))\
+                 .filter((col("latitude").between(-90, 90)) & (col("longitude").between(-180, 180)))\
                  .filter((col("baro_altitude").isNull()) | (col("baro_altitude") >= 0))\
                  .filter((col("icao24").isNotNull()) & (col("icao24") != "") & (col("icao24").rlike("^[a-fA-F0-9]{6}$"))) \
                  .dropDuplicates(subset=["icao24", "time_position", "last_contact"])\
