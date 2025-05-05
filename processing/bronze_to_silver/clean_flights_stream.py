@@ -1,7 +1,9 @@
 import logging
-from pyspark.sql import SparkSession, DataFrame
+from pyspark.sql import DataFrame
 from pyspark.sql.functions import col, current_timestamp
 from ingestion.spark_ingestion_job.utils.config_loader import load_config
+from ingestion.spark_ingestion_job.utils.spark_session import create_spark_session
+from ingestion.spark_ingestion_job.utils.streaming_query_listener import MyQueryListener
 
 # Logging setup
 logging.basicConfig(
@@ -9,18 +11,6 @@ logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s"
 )
 logger = logging.getLogger("SilverStreamingLayer")
-
-
-def create_spark_session(app_name: str = "CleanFlightsStream") -> SparkSession:
-    return (
-        SparkSession.builder
-        .appName(app_name)
-        .config("spark.sql.shuffle.partitions", "2")
-        .config("spark.jars.packages", "io.delta:delta-spark_2.12:3.3.1")
-        .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
-        .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
-        .getOrCreate()
-    )
 
 
 def clean_data(df: DataFrame) -> DataFrame:
@@ -45,7 +35,8 @@ def clean_data(df: DataFrame) -> DataFrame:
 
 def main():
     config = load_config()
-    spark = create_spark_session()
+    spark = create_spark_session(app_name="CleanFlightsStream")
+    spark.streams.addListener(MyQueryListener())
 
     bronze_delta_path = config["paths"]["bronze"]
 
@@ -65,6 +56,8 @@ def main():
             .writeStream\
             .format("delta")\
             .outputMode("append")\
+            .trigger(processingTime="10 seconds")\
+            .option("maxBytesPerTrigger", "10000000")\
             .option("checkpointLocation", config["paths"]["silver_checkpoint"])\
             .start(silver_delta_path)
 
