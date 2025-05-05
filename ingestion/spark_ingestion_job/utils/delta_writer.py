@@ -12,10 +12,10 @@ logger = logging.getLogger("DeltaWriter")
 
 
 class DeltaWriter:
-    def __init__(self, spark: SparkSession, config_path: str = "/home/abhays/real-time-flight-monitoring/ingestion/spark_ingestion_job/config/config.yaml"):
+    def __init__(self, spark: SparkSession, mode: str = None, config_path: str = "/home/abhays/real-time-flight-monitoring/ingestion/spark_ingestion_job/config/config.yaml"):
         self.spark = spark
         self.config = load_config(config_path)
-        self.default_mode = self.config["delta"].get("mode", "append")
+        self.default_mode = mode if mode else self.config["delta"].get("mode", "append")
         self.default_merge_schema = self.config["delta"].get("merge_schema", False)
 
     def write_to_delta(
