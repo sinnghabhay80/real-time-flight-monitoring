@@ -24,7 +24,6 @@ streaming:
 
 delta:
   mode: "append"
-  gold_mode: "overwrite"
   merge_schema: false
 
 logging:
