@@ -5,6 +5,7 @@ from ingestion.spark_ingestion_job.utils.config_loader import load_config
 from ingestion.spark_ingestion_job.utils.opensky_api_reader import OpenSkyAPIClient
 from ingestion.spark_ingestion_job.utils.delta_writer import DeltaWriter
 from ingestion.spark_ingestion_job.utils.schema_loader import load_schema_from_ddl, normalize_state_row
+from ingestion.spark_ingestion_job.utils.spark_session import create_spark_session
 
 # Logging setup
 logging.basicConfig(
@@ -14,19 +15,9 @@ logging.basicConfig(
 logger = logging.getLogger("BronzeIngestionLayer")
 
 
-def create_spark_session(app_name: str = "RealTimeAircraftIngest") -> SparkSession:
-    return (
-        SparkSession.builder
-        .appName(app_name)
-        .config("spark.jars.packages", "io.delta:delta-spark_2.12:3.3.1")
-        .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
-        .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
-        .getOrCreate()
-    )
-
 def main():
     config = load_config()
-    spark = create_spark_session()
+    spark = create_spark_session(app_name="RealTimeAircraftIngest")
 
     client = OpenSkyAPIClient()
     writer = DeltaWriter(spark)
