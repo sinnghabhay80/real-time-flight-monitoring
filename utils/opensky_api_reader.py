@@ -13,7 +13,7 @@ logger = logging.getLogger("OpenSkyAPIClient")
 
 
 class OpenSkyAPIClient:
-    def __init__(self, config_path: str = "./config/config.yaml"):
+    def __init__(self, config_path: str = "/home/abhays/real-time-flight-monitoring/config/config.yaml"):
         """
         Initializes the OpenSky API client with credentials from YAML config.
         """
