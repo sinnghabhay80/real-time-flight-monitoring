@@ -1,9 +1,9 @@
 import logging
 from pyspark.sql import DataFrame
 from pyspark.sql.functions import col, current_timestamp
-from ingestion.spark_ingestion_job.utils.config_loader import load_config
-from ingestion.spark_ingestion_job.utils.spark_session import create_spark_session
-from ingestion.spark_ingestion_job.utils.streaming_query_listener import MyQueryListener
+from utils.config_loader import load_config
+from utils.spark_session import create_spark_session
+from utils.streaming_query_listener import MyQueryListener
 
 # Logging setup
 logging.basicConfig(

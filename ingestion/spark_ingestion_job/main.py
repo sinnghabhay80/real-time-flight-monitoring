@@ -1,11 +1,11 @@
 import time
 import logging
 from pyspark.sql import SparkSession, Row
-from ingestion.spark_ingestion_job.utils.config_loader import load_config
-from ingestion.spark_ingestion_job.utils.opensky_api_reader import OpenSkyAPIClient
-from ingestion.spark_ingestion_job.utils.delta_writer import DeltaWriter
-from ingestion.spark_ingestion_job.utils.schema_loader import load_schema_from_ddl, normalize_state_row
-from ingestion.spark_ingestion_job.utils.spark_session import create_spark_session
+from utils.config_loader import load_config
+from utils.opensky_api_reader import OpenSkyAPIClient
+from utils.delta_writer import DeltaWriter
+from utils.schema_loader import load_schema_from_ddl, normalize_state_row
+from utils.spark_session import create_spark_session
 
 # Logging setup
 logging.basicConfig(

@@ -1,8 +1,8 @@
 import logging
 from pyspark.sql.functions import col, to_date, count, sum, avg, max, min, expr, when, from_unixtime, hour, countDistinct, sqrt
-from ingestion.spark_ingestion_job.utils.config_loader import load_config
-from ingestion.spark_ingestion_job.utils.delta_writer import DeltaWriter
-from ingestion.spark_ingestion_job.utils.spark_session import create_spark_session
+from utils.config_loader import load_config
+from utils.delta_writer import DeltaWriter
+from utils.spark_session import create_spark_session
 
 # Logging setup
 logging.basicConfig(

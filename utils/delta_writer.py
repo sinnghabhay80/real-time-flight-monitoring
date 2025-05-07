@@ -1,7 +1,7 @@
 from pyspark.sql import DataFrame, SparkSession
 import logging
 from typing import Optional, List
-from ingestion.spark_ingestion_job.utils.config_loader import load_config
+from utils.config_loader import load_config
 
 # Logging
 logging.basicConfig(
