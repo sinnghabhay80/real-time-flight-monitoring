@@ -6,3 +6,4 @@ tenacity
 typing
 pathlib
 python-dotenv
+apache-airflow
