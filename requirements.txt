@@ -7,3 +7,4 @@ typing
 pathlib
 python-dotenv
 apache-airflow
+psutil
