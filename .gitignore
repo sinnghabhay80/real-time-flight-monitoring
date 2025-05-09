@@ -181,6 +181,6 @@ venv
 architecture.txt
 .env
 datalake
-orchestration
+orchestration/*
 
 !orchestration/dags
