@@ -180,3 +180,7 @@ venv
 #Config Folder
 architecture.txt
 .env
+datalake
+orchestration
+
+!orchestration/dags
