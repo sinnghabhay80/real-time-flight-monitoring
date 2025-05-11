@@ -18,6 +18,13 @@ paths:
   silver_schema: "${LOCAL_PATH}/schemas/silver.ddl"
   gold_schema: "${LOCAL_PATH}/schemas/gold.ddl"
 
+  bronze_level_script: "${LOCAL_PATH}/ingestion/spark_ingestion_job/bronze_ingestion.py"
+  silver_level_script: "${LOCAL_PATH}/processing/bronze_to_silver/clean_flights_stream.py"
+  gold_level_script: "${LOCAL_PATH}/processing/silver_to_gold/enrich_flights_batch.py"
+
+  bronze_dag_script: "${LOCAL_PATH}/orchestration/scripts/bronze_process.py"
+  silver_dag_script: "${LOCAL_PATH}/orchestration/scripts/silver_process.py"
+
 streaming:
   trigger_interval: "30 seconds"
   checkpoint_retention_days: 7
