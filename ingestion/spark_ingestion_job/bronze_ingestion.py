@@ -1,6 +1,6 @@
 import time
 import logging
-from pyspark.sql import SparkSession, Row
+from pyspark.sql import Row
 from utils.config_loader import load_config
 from utils.opensky_api_reader import OpenSkyAPIClient
 from utils.delta_writer import DeltaWriter
