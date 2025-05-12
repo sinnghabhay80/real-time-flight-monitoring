@@ -15,36 +15,23 @@ default_args = {
 
 config = load_config()
 project_root = config["paths"]["project_root"]
-bronze_dag_process = config["paths"]["bronze_dag_script"]
-silver_dag_process = config["paths"]["silver_dag_script"]
 gold_dag_process = config["paths"]["gold_level_script"]
 
 
 #DAG definition
-with DAG(
-    'flight-monitoring',
+dag = DAG(
+    'gold_aggregation_dag',
     default_args=default_args,
-    description='Orchestrate Bronze -> Silver -> Gold',
-    schedule=None,
+    description='Orchestrate Batch Gold Refresh',
+    schedule=timedelta(minutes=5),
     start_date=(datetime.now() - timedelta(days=1)),
     catchup=False,
     tags=['flight-monitoring']
-) as dag:
-    #Define tasks
-    bronze_process = BashOperator(
-    task_id='bronze_process',
-    bash_command = f"cd {project_root} && python {bronze_dag_process}",
-    )
+)
 
-    silver_process = BashOperator(
-    task_id='silver_process',
-    bash_command = f"cd {project_root} && python {silver_dag_process}",
-    )
-
-    gold_process = BashOperator(
-    task_id='gold_process',
-    bash_command = f"cd {project_root} && python {gold_dag_process}",
-    )
-
-    #Task Lineage
-    bronze_process >> silver_process >> gold_process
+#Define Task
+gold_process = BashOperator(
+task_id='gold_process',
+bash_command = f"cd {project_root} && python {gold_dag_process}",
+dag=dag
+)
