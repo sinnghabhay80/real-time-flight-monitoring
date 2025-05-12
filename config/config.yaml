@@ -4,6 +4,8 @@ opensky:
   polling_interval_seconds: 10
 
 paths:
+  project_root: ${LOCAL_PATH}
+
   base: "${LOCAL_PATH}/datalake"
   bronze: "${LOCAL_PATH}/datalake/bronze/opensky"
   silver: "${LOCAL_PATH}/datalake/silver/opensky"
