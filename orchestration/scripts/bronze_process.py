@@ -15,13 +15,15 @@ logger = logging.getLogger("BronzeDAG")
 def check_or_start_bronze():
     config = load_config()
     bronze_script_path = config["paths"]["bronze_level_script"]
-    script_name = os.path.basename(bronze_script_path)
-    script_path = os.path.realpath(bronze_script_path)
 
-    process_life = process_alive_or_not(script_name)
+    process_life = process_alive_or_not(bronze_script_path)
 
     if not process_life:
         logger.info("Starting bronze polling script...")
-        subprocess.Popen(["python", script_path])
+        subprocess.Popen(["python", bronze_script_path])
 
     else: logger.info("Bronze polling script already running!")
+
+
+if __name__ == "__main__":
+    check_or_start_bronze()
