@@ -31,6 +31,6 @@ dag = DAG(
 #Define Task
 bronze_process = BashOperator(
 task_id='bronze_process',
-bash_command = f"cd {project_root} && python {bronze_dag_process}",
+bash_command = f"cd {project_root} && source venv/bin/activate && python {bronze_dag_process}",
 dag=dag
 )
