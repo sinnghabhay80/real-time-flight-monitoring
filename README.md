@@ -152,7 +152,8 @@ Visit `http://localhost:8080` and trigger the DAGs:
 * Bronze Dataframe![image](https://github.com/user-attachments/assets/d7c87c3a-4195-4bbc-a1af-8fee9815a065)
 * Silver Dataframe![image](https://github.com/user-attachments/assets/70dade75-fb10-41c6-b084-02a49e42b1f4)
 * Gold Dataframe![image](https://github.com/user-attachments/assets/1415ea17-735c-4af2-9069-507ced8b0a4b)
-* Airflow![image](https://github.com/user-attachments/assets/3521e603-df90-4f4d-bed4-aa47dd2020f5)![image](https://github.com/user-attachments/assets/523633ec-88ba-4454-812d-deeb4d6f0077)![image](https://github.com/user-attachments/assets/7b554b80-43b3-4f30-9cfd-20a7c925ecb0)![image](https://github.com/user-attachments/assets/46d4d234-1c08-4714-a1ca-1cb44ef26de8)
+* Airflow![image](https://github.com/user-attachments/assets/3521e603-df90-4f4d-bed4-aa47dd2020f5)![image](https://github.com/user-attachments/assets/523633ec-88ba-4454-812d-deeb4d6f0077)![image](https://github.com/user-attachments/assets/7b554b80-43b3-4f30-9cfd-20a7c925ecb0)![Screenshot 2025-05-18 174559](https://github.com/user-attachments/assets/9cc12e4f-22de-4acc-8152-f7159fa47c46)
+
 
 ---
 
